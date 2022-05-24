@@ -4,4 +4,4 @@
 ![java version](https://img.shields.io/badge/JDK-8.0+-0e83c)
 ![license](https://img.shields.io/github/license/HonestMasker/sunchaser-huaying?color=FF5531)
 
-在线文档：`https://api.lilu.org.cn/huaying/`
+在线文档：[`https://lilu.org.cn/huaying/`](https://lilu.org.cn/huaying/)
