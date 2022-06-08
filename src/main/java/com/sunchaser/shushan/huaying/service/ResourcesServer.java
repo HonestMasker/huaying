@@ -7,9 +7,9 @@ import com.google.common.collect.Sets;
 import com.sunchaser.mojian.base.exception.MjException;
 import com.sunchaser.shushan.huaying.config.Constants;
 import com.sunchaser.shushan.huaying.config.property.HyProperties;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ResourceUtils;
@@ -29,11 +29,12 @@ import static com.sunchaser.shushan.huaying.config.Constants.NETWORK_ERROR;
  */
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class ResourcesServer implements InitializingBean {
+
     private static final Map<String, List<String>> RESOURCES_MAP = Maps.newHashMap();
 
-    @Autowired
-    private HyProperties hyProperties;
+    private final HyProperties hyProperties;
 
     @Override
     public void afterPropertiesSet() throws Exception {

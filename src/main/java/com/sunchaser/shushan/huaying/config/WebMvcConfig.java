@@ -2,8 +2,8 @@ package com.sunchaser.shushan.huaying.config;
 
 import com.sunchaser.shushan.huaying.config.property.HyProperties;
 import com.sunchaser.shushan.huaying.web.interceptor.DomainInterceptor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -18,12 +18,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Configuration
 @Slf4j
+@RequiredArgsConstructor
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    @Autowired
-    private DomainInterceptor domainInterceptor;
-    @Autowired
-    private HyProperties hyProperties;
+    private final DomainInterceptor domainInterceptor;
+    private final HyProperties hyProperties;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

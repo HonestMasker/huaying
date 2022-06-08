@@ -14,6 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan({"com.sunchaser.mojian", "com.sunchaser.shushan.huaying"})
 public class HuaYingApplication {
+
     public static void main(String[] args) {
         new SpringApplicationBuilder(HuaYingApplication.class)
                 .web(WebApplicationType.SERVLET)

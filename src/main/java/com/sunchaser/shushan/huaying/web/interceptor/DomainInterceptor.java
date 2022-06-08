@@ -3,9 +3,9 @@ package com.sunchaser.shushan.huaying.web.interceptor;
 import com.sunchaser.mojian.base.exception.MjException;
 import com.sunchaser.shushan.huaying.config.property.HyProperties;
 import com.sunchaser.shushan.huaying.service.ResourcesServer;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -26,10 +26,10 @@ import static org.springframework.http.HttpHeaders.REFERER;
  */
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class DomainInterceptor implements HandlerInterceptor {
 
-    @Autowired
-    private HyProperties hyProperties;
+    private final HyProperties hyProperties;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

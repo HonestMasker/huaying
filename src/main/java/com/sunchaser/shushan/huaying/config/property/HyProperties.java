@@ -41,6 +41,7 @@ public class HyProperties {
 
     @Data
     public static class WebSiteInfo {
+
         private String appId;
 
         private String name;

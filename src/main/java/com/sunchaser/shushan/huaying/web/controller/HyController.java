@@ -8,7 +8,7 @@ import com.sunchaser.mojian.base.util.Optionals;
 import com.sunchaser.shushan.huaying.service.RandomService;
 import com.sunchaser.shushan.huaying.service.ResourcesServer;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -28,12 +28,12 @@ import static com.sunchaser.shushan.huaying.config.Constants.*;
  */
 @Controller
 @RequestMapping("${huaying.api-base-path}")
+@RequiredArgsConstructor
 public class HyController {
 
-    @Autowired
-    private RandomService randomService;
-    @Autowired
-    private ResourcesServer resourcesServer;
+    private final RandomService randomService;
+
+    private final ResourcesServer resourcesServer;
 
     /**
      * 手动刷新资源
@@ -93,6 +93,7 @@ public class HyController {
          * 仅返回资源URL
          */
         URL(URL_VALUE) {
+
             @Override
             public void doDispatcher(HttpServletRequest request, HttpServletResponse response, String randomSource) throws Exception {
                 response.setContentType(MediaType.TEXT_HTML_VALUE);
@@ -104,6 +105,7 @@ public class HyController {
          * json格式
          */
         JSON(JSON_VALUE) {
+
             @Override
             public void doDispatcher(HttpServletRequest request, HttpServletResponse response, String randomSource) throws Exception {
                 response.setContentType(MediaType.APPLICATION_JSON_VALUE);
@@ -116,12 +118,15 @@ public class HyController {
          * 重定向到资源源地址
          */
         REDIRECT(REDIRECT_VALUE) {
+
             @Override
             public void doDispatcher(HttpServletRequest request, HttpServletResponse response, String randomSource) throws Exception {
                 response.sendRedirect(randomSource);
             }
         };
+
         private final String type;
+
         private static final Map<String, ResponseTypeEnum> enumMap = Maps.newHashMap();
 
         static {

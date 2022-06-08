@@ -4,7 +4,7 @@ import com.sunchaser.mojian.base.entity.response.SingleResponse;
 import com.sunchaser.mojian.web.advice.MjGlobalExceptionHandler;
 import com.sunchaser.shushan.huaying.config.property.HyProperties;
 import com.sunchaser.shushan.huaying.config.property.HyProperties.WebSiteInfo;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 @RestControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE)
+@RequiredArgsConstructor
 public class HyExceptionHandler extends MjGlobalExceptionHandler {
 
-    @Autowired
-    private HyProperties hyProperties;
+    private final HyProperties hyProperties;
 
     @Override
     public SingleResponse<WebSiteInfo> handle4xxClientError(Exception ex) {
