@@ -30,7 +30,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         String randomPathPattern = baseApiPath + "/random/**";
         String todayPathPattern = baseApiPath + "/today/**";
         String flushPath = baseApiPath + "/flush";
-        log.info("[WebMvcConfig#addInterceptors] add PathPatterns: {}, {}, {}", randomPathPattern, todayPathPattern, flushPath);
+        LOGGER.info("[WebMvcConfig#addInterceptors] add PathPatterns: {}, {}, {}", randomPathPattern, todayPathPattern, flushPath);
         registry.addInterceptor(domainInterceptor)
                 .addPathPatterns(
                         randomPathPattern,

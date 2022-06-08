@@ -34,7 +34,7 @@ public class DomainInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String referer = request.getHeader(REFERER);
-        log.info("[DomainInterceptor#preHandle] referer={}", referer);
+        LOGGER.info("[DomainInterceptor#preHandle] referer={}", referer);
         if (StringUtils.isBlank(referer)) {
             if (!hyProperties.getNoReferer()) {// 防盗链
                 throw new MjException(NO_AUTH);

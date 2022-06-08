@@ -53,7 +53,7 @@ public class ResourcesServer implements InitializingBean {
                     .filter(file -> file.getName().endsWith(Constants.TXT))
                     .forEach(file -> RESOURCES_MAP.put(FileUtil.mainName(file), Lists.newArrayList(FileUtil.readUtf8Lines(file, Sets.newHashSet()))));
         } catch (IOException e) {
-            log.error("LoadResourcesService#static loadResource error", e);
+            LOGGER.error("LoadResourcesService#static loadResource error", e);
             throw new MjException(NETWORK_ERROR);
         }
     }
