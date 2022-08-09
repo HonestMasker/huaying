@@ -1,6 +1,6 @@
 package com.sunchaser.shushan.huaying.service;
 
-import com.sunchaser.mojian.base.exception.MjException;
+import com.sunchaser.shushan.mojian.base.exception.MjException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 

@@ -22,6 +22,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebMvcConfig implements WebMvcConfigurer {
 
     private final DomainInterceptor domainInterceptor;
+
     private final HyProperties hyProperties;
 
     @Override

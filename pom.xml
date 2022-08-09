@@ -73,18 +73,18 @@
             <version>${hutool.core.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.sunchaser.mojian</groupId>
+            <groupId>com.sunchaser.shushan</groupId>
             <artifactId>sunchaser-mojian-base</artifactId>
             <version>${mojian.version}</version>
             <scope>system</scope>
-            <systemPath>${pom.basedir}/src/main/resources/lib/sunchaser-mojian-base-1.0.0-SNAPSHOT.jar</systemPath>
+            <systemPath>${pom.basedir}/src/main/resources/lib/sunchaser-mojian-base-0.0.1-SNAPSHOT.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>com.sunchaser.mojian</groupId>
+            <groupId>com.sunchaser.shushan</groupId>
             <artifactId>sunchaser-mojian-web</artifactId>
             <version>${mojian.version}</version>
             <scope>system</scope>
-            <systemPath>${pom.basedir}/src/main/resources/lib/sunchaser-mojian-web-1.0.0-SNAPSHOT.jar</systemPath>
+            <systemPath>${pom.basedir}/src/main/resources/lib/sunchaser-mojian-web-0.0.1-SNAPSHOT.jar</systemPath>
         </dependency>
     </dependencies>
 

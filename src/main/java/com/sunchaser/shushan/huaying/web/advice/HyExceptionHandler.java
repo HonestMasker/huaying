@@ -1,9 +1,9 @@
 package com.sunchaser.shushan.huaying.web.advice;
 
-import com.sunchaser.mojian.base.entity.response.SingleResponse;
-import com.sunchaser.mojian.web.advice.MjGlobalExceptionHandler;
 import com.sunchaser.shushan.huaying.config.property.HyProperties;
 import com.sunchaser.shushan.huaying.config.property.HyProperties.WebSiteInfo;
+import com.sunchaser.shushan.mojian.base.entity.response.SingleResponse;
+import com.sunchaser.shushan.mojian.web.advice.MjGlobalExceptionHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

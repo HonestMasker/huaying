@@ -1,12 +1,12 @@
 package com.sunchaser.shushan.huaying.web.controller;
 
 import com.google.common.collect.Maps;
-import com.sunchaser.mojian.base.entity.response.IResponse;
-import com.sunchaser.mojian.base.entity.response.SingleResponse;
-import com.sunchaser.mojian.base.util.JsonUtils;
-import com.sunchaser.mojian.base.util.Optionals;
 import com.sunchaser.shushan.huaying.service.RandomService;
 import com.sunchaser.shushan.huaying.service.ResourcesServer;
+import com.sunchaser.shushan.mojian.base.entity.response.IResponse;
+import com.sunchaser.shushan.mojian.base.entity.response.SingleResponse;
+import com.sunchaser.shushan.mojian.base.util.JsonUtils;
+import com.sunchaser.shushan.mojian.base.util.Optionals;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -54,7 +54,7 @@ public class HyController {
      * @param type     响应数据类型
      * @throws Exception will be handled by com.sunchaser.shushan.huaying.web.advice.HyExceptionHandler
      * @see com.sunchaser.shushan.huaying.web.advice.HyExceptionHandler
-     * @see com.sunchaser.mojian.web.advice.MjGlobalExceptionHandler
+     * @see com.sunchaser.shushan.mojian.web.advice.MjGlobalExceptionHandler
      */
     @GetMapping("/random/{category}")
     public void random(HttpServletRequest request,
@@ -73,7 +73,7 @@ public class HyController {
      * @param type     响应数据类型
      * @throws Exception will be handled by com.sunchaser.shushan.huaying.web.advice.HyExceptionHandler
      * @see com.sunchaser.shushan.huaying.web.advice.HyExceptionHandler
-     * @see com.sunchaser.mojian.web.advice.MjGlobalExceptionHandler
+     * @see com.sunchaser.shushan.mojian.web.advice.MjGlobalExceptionHandler
      */
     @GetMapping("/today/{category}")
     public void today(HttpServletRequest request,
@@ -93,7 +93,6 @@ public class HyController {
          * 仅返回资源URL
          */
         URL(URL_VALUE) {
-
             @Override
             public void doDispatcher(HttpServletRequest request, HttpServletResponse response, String randomSource) throws Exception {
                 response.setContentType(MediaType.TEXT_HTML_VALUE);
@@ -105,7 +104,6 @@ public class HyController {
          * json格式
          */
         JSON(JSON_VALUE) {
-
             @Override
             public void doDispatcher(HttpServletRequest request, HttpServletResponse response, String randomSource) throws Exception {
                 response.setContentType(MediaType.APPLICATION_JSON_VALUE);
@@ -118,7 +116,6 @@ public class HyController {
          * 重定向到资源源地址
          */
         REDIRECT(REDIRECT_VALUE) {
-
             @Override
             public void doDispatcher(HttpServletRequest request, HttpServletResponse response, String randomSource) throws Exception {
                 response.sendRedirect(randomSource);

@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @since JDK8 2022/4/1
  */
 @SpringBootApplication
-@ComponentScan({"com.sunchaser.mojian", "com.sunchaser.shushan.huaying"})
+@ComponentScan({"com.sunchaser.shushan.mojian", "com.sunchaser.shushan.huaying"})
 public class HuaYingApplication {
 
     public static void main(String[] args) {

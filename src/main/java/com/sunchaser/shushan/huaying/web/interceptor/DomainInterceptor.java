@@ -1,8 +1,8 @@
 package com.sunchaser.shushan.huaying.web.interceptor;
 
-import com.sunchaser.mojian.base.exception.MjException;
 import com.sunchaser.shushan.huaying.config.property.HyProperties;
 import com.sunchaser.shushan.huaying.service.ResourcesServer;
+import com.sunchaser.shushan.mojian.base.exception.MjException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
