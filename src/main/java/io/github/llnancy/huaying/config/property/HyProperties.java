@@ -1,4 +1,4 @@
-package com.sunchaser.shushan.huaying.config.property;
+package io.github.llnancy.huaying.config.property;
 
 import lombok.Data;
 import lombok.Getter;

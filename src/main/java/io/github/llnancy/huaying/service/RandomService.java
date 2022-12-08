@@ -1,6 +1,7 @@
-package com.sunchaser.shushan.huaying.service;
+package io.github.llnancy.huaying.service;
 
 import com.sunchaser.shushan.mojian.base.exception.MjException;
+import io.github.llnancy.huaying.config.Constants;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -9,8 +10,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Function;
-
-import static com.sunchaser.shushan.huaying.config.Constants.*;
 
 /**
  * 随机资源服务层
@@ -26,16 +25,16 @@ public class RandomService {
     }
 
     public String today(String category) {
-        return doRandom(category, size -> Math.toIntExact(ChronoUnit.DAYS.between(LocalDate.parse(INIT_DATE), LocalDate.now()) % size));
+        return doRandom(category, size -> Math.toIntExact(ChronoUnit.DAYS.between(LocalDate.parse(Constants.INIT_DATE), LocalDate.now()) % size));
     }
 
     public String doRandom(String category, Function<Integer, Integer> function) {
-        if (DOMAINS.equals(category) || ResourcesServer.isEmpty()) {
-            throw new MjException(RESOURCES_NOT_EXISTED);
+        if (Constants.DOMAINS.equals(category) || ResourcesServer.isEmpty()) {
+            throw new MjException(Constants.RESOURCES_NOT_EXISTED);
         }
         List<String> resources = ResourcesServer.get(category);
         if (CollectionUtils.isEmpty(resources)) {
-            throw new MjException(RESOURCES_NOT_EXISTED);
+            throw new MjException(Constants.RESOURCES_NOT_EXISTED);
         }
         int randomInt = function.apply(resources.size());
         return resources.get(randomInt);

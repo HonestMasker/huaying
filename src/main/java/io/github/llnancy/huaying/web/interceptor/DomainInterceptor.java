@@ -1,8 +1,9 @@
-package com.sunchaser.shushan.huaying.web.interceptor;
+package io.github.llnancy.huaying.web.interceptor;
 
-import com.sunchaser.shushan.huaying.config.property.HyProperties;
-import com.sunchaser.shushan.huaying.service.ResourcesServer;
+import io.github.llnancy.huaying.config.property.HyProperties;
+import io.github.llnancy.huaying.service.ResourcesServer;
 import com.sunchaser.shushan.mojian.base.exception.MjException;
+import io.github.llnancy.huaying.config.Constants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -14,8 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-import static com.sunchaser.shushan.huaying.config.Constants.DOMAINS;
-import static com.sunchaser.shushan.huaying.config.Constants.NO_AUTH;
 import static org.springframework.http.HttpHeaders.REFERER;
 
 /**
@@ -37,11 +36,11 @@ public class DomainInterceptor implements HandlerInterceptor {
         LOGGER.info("[DomainInterceptor#preHandle] referer={}", referer);
         if (StringUtils.isBlank(referer)) {
             if (!hyProperties.getNoReferer()) {// 防盗链
-                throw new MjException(NO_AUTH);
+                throw new MjException(Constants.NO_AUTH);
             }
             return true;
         }
-        List<String> domainList = ResourcesServer.get(DOMAINS);
+        List<String> domainList = ResourcesServer.get(Constants.DOMAINS);
         if (CollectionUtils.isEmpty(domainList)) {
             return true;
         }
@@ -50,6 +49,6 @@ public class DomainInterceptor implements HandlerInterceptor {
                 return true;
             }
         }
-        throw new MjException(NO_AUTH);
+        throw new MjException(Constants.NO_AUTH);
     }
 }

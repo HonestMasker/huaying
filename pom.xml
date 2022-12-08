@@ -15,12 +15,12 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <springboot.version>2.6.6</springboot.version>
+        <springboot.version>2.7.6</springboot.version>
         <!-- 启动类 -->
-        <start-class>com.sunchaser.shushan.huaying.HuaYingApplication</start-class>
+        <start-class>io.github.llnancy.huaying.HuaYingApplication</start-class>
         <!-- 工具包相关依赖-->
         <google.guava.version>31.1-jre</google.guava.version>
-        <hutool.core.version>5.7.22</hutool.core.version>
+        <hutool.core.version>5.8.10</hutool.core.version>
         <mojian.version>1.0.0-SNAPSHOT</mojian.version>
     </properties>
 

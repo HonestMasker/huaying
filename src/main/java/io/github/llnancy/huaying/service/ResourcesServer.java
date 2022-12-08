@@ -1,11 +1,11 @@
-package com.sunchaser.shushan.huaying.service;
+package io.github.llnancy.huaying.service;
 
 import cn.hutool.core.io.FileUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.sunchaser.shushan.huaying.config.Constants;
-import com.sunchaser.shushan.huaying.config.property.HyProperties;
+import io.github.llnancy.huaying.config.Constants;
+import io.github.llnancy.huaying.config.property.HyProperties;
 import com.sunchaser.shushan.mojian.base.exception.MjException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,8 +18,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-
-import static com.sunchaser.shushan.huaying.config.Constants.NETWORK_ERROR;
 
 /**
  * 资源服务端
@@ -54,7 +52,7 @@ public class ResourcesServer implements InitializingBean {
                     .forEach(file -> RESOURCES_MAP.put(FileUtil.mainName(file), Lists.newArrayList(FileUtil.readUtf8Lines(file, Sets.newHashSet()))));
         } catch (IOException e) {
             LOGGER.error("LoadResourcesService#static loadResource error", e);
-            throw new MjException(NETWORK_ERROR);
+            throw new MjException(Constants.NETWORK_ERROR);
         }
     }
 

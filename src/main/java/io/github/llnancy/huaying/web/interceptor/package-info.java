@@ -4,7 +4,7 @@
  */
 @NonNullApi
 @NonNullFields
-package com.sunchaser.shushan.huaying.web.interceptor;
+package io.github.llnancy.huaying.web.interceptor;
 
 import org.springframework.lang.NonNullApi;
 import org.springframework.lang.NonNullFields;

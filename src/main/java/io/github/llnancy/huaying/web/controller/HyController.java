@@ -1,12 +1,13 @@
-package com.sunchaser.shushan.huaying.web.controller;
+package io.github.llnancy.huaying.web.controller;
 
 import com.google.common.collect.Maps;
-import com.sunchaser.shushan.huaying.service.RandomService;
-import com.sunchaser.shushan.huaying.service.ResourcesServer;
+import io.github.llnancy.huaying.service.RandomService;
+import io.github.llnancy.huaying.service.ResourcesServer;
 import com.sunchaser.shushan.mojian.base.entity.response.IResponse;
 import com.sunchaser.shushan.mojian.base.entity.response.SingleResponse;
 import com.sunchaser.shushan.mojian.base.util.JsonUtils;
 import com.sunchaser.shushan.mojian.base.util.Optionals;
+import io.github.llnancy.huaying.web.advice.HyExceptionHandler;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
-import static com.sunchaser.shushan.huaying.config.Constants.*;
+import static io.github.llnancy.huaying.config.Constants.*;
 
 /**
  * 随机资源API控制层
@@ -53,7 +54,7 @@ public class HyController {
      * @param category 资源分类
      * @param type     响应数据类型
      * @throws Exception will be handled by com.sunchaser.shushan.huaying.web.advice.HyExceptionHandler
-     * @see com.sunchaser.shushan.huaying.web.advice.HyExceptionHandler
+     * @see HyExceptionHandler
      * @see com.sunchaser.shushan.mojian.web.advice.MjGlobalExceptionHandler
      */
     @GetMapping("/random/{category}")
@@ -72,7 +73,7 @@ public class HyController {
      * @param category 资源分类
      * @param type     响应数据类型
      * @throws Exception will be handled by com.sunchaser.shushan.huaying.web.advice.HyExceptionHandler
-     * @see com.sunchaser.shushan.huaying.web.advice.HyExceptionHandler
+     * @see HyExceptionHandler
      * @see com.sunchaser.shushan.mojian.web.advice.MjGlobalExceptionHandler
      */
     @GetMapping("/today/{category}")

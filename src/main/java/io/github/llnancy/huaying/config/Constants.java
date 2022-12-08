@@ -1,4 +1,4 @@
-package com.sunchaser.shushan.huaying.config;
+package io.github.llnancy.huaying.config;
 
 /**
  * 常量

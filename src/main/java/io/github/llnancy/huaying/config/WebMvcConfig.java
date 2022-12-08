@@ -1,7 +1,7 @@
-package com.sunchaser.shushan.huaying.config;
+package io.github.llnancy.huaying.config;
 
-import com.sunchaser.shushan.huaying.config.property.HyProperties;
-import com.sunchaser.shushan.huaying.web.interceptor.DomainInterceptor;
+import io.github.llnancy.huaying.config.property.HyProperties;
+import io.github.llnancy.huaying.web.interceptor.DomainInterceptor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;

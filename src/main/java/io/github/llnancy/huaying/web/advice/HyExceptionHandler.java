@@ -1,7 +1,7 @@
-package com.sunchaser.shushan.huaying.web.advice;
+package io.github.llnancy.huaying.web.advice;
 
-import com.sunchaser.shushan.huaying.config.property.HyProperties;
-import com.sunchaser.shushan.huaying.config.property.HyProperties.WebSiteInfo;
+import io.github.llnancy.huaying.config.property.HyProperties;
+import io.github.llnancy.huaying.config.property.HyProperties.WebSiteInfo;
 import com.sunchaser.shushan.mojian.base.entity.response.SingleResponse;
 import com.sunchaser.shushan.mojian.web.advice.MjGlobalExceptionHandler;
 import lombok.RequiredArgsConstructor;
