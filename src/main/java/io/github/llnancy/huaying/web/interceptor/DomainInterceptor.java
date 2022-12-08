@@ -1,9 +1,9 @@
 package io.github.llnancy.huaying.web.interceptor;
 
+import io.github.llnancy.huaying.config.Constants;
 import io.github.llnancy.huaying.config.property.HyProperties;
 import io.github.llnancy.huaying.service.ResourcesServer;
-import com.sunchaser.shushan.mojian.base.exception.MjException;
-import io.github.llnancy.huaying.config.Constants;
+import io.github.llnancy.mojian.base.exception.MjBaseBizException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -36,7 +36,7 @@ public class DomainInterceptor implements HandlerInterceptor {
         LOGGER.info("[DomainInterceptor#preHandle] referer={}", referer);
         if (StringUtils.isBlank(referer)) {
             if (!hyProperties.getNoReferer()) {// 防盗链
-                throw new MjException(Constants.NO_AUTH);
+                throw new MjBaseBizException(Constants.NO_AUTH);
             }
             return true;
         }
@@ -49,6 +49,6 @@ public class DomainInterceptor implements HandlerInterceptor {
                 return true;
             }
         }
-        throw new MjException(Constants.NO_AUTH);
+        throw new MjBaseBizException(Constants.NO_AUTH);
     }
 }

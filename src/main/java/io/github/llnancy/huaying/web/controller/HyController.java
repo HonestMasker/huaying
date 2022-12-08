@@ -3,23 +3,29 @@ package io.github.llnancy.huaying.web.controller;
 import com.google.common.collect.Maps;
 import io.github.llnancy.huaying.service.RandomService;
 import io.github.llnancy.huaying.service.ResourcesServer;
-import com.sunchaser.shushan.mojian.base.entity.response.IResponse;
-import com.sunchaser.shushan.mojian.base.entity.response.SingleResponse;
-import com.sunchaser.shushan.mojian.base.util.JsonUtils;
-import com.sunchaser.shushan.mojian.base.util.Optionals;
 import io.github.llnancy.huaying.web.advice.HyExceptionHandler;
+import io.github.llnancy.mojian.base.entity.response.IResponse;
+import io.github.llnancy.mojian.base.entity.response.SingleResponse;
+import io.github.llnancy.mojian.base.util.JsonUtils;
+import io.github.llnancy.mojian.base.util.Optionals;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
-import static io.github.llnancy.huaying.config.Constants.*;
+import static io.github.llnancy.huaying.config.Constants.JSON_VALUE;
+import static io.github.llnancy.huaying.config.Constants.REDIRECT_VALUE;
+import static io.github.llnancy.huaying.config.Constants.URL_VALUE;
 
 /**
  * 随机资源API控制层
@@ -53,9 +59,8 @@ public class HyController {
      * @param response response
      * @param category 资源分类
      * @param type     响应数据类型
-     * @throws Exception will be handled by com.sunchaser.shushan.huaying.web.advice.HyExceptionHandler
-     * @see HyExceptionHandler
-     * @see com.sunchaser.shushan.mojian.web.advice.MjGlobalExceptionHandler
+     * @throws Exception will be handled by {@link HyExceptionHandler}
+     * @see io.github.llnancy.mojian.web.advice.MjDefaultGlobalExceptionHandler
      */
     @GetMapping("/random/{category}")
     public void random(HttpServletRequest request,
@@ -72,9 +77,8 @@ public class HyController {
      * @param response response
      * @param category 资源分类
      * @param type     响应数据类型
-     * @throws Exception will be handled by com.sunchaser.shushan.huaying.web.advice.HyExceptionHandler
-     * @see HyExceptionHandler
-     * @see com.sunchaser.shushan.mojian.web.advice.MjGlobalExceptionHandler
+     * @throws Exception will be handled by {@link HyExceptionHandler}
+     * @see io.github.llnancy.mojian.web.advice.MjDefaultGlobalExceptionHandler
      */
     @GetMapping("/today/{category}")
     public void today(HttpServletRequest request,

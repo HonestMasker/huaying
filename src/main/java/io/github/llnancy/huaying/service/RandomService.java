@@ -1,7 +1,7 @@
 package io.github.llnancy.huaying.service;
 
-import com.sunchaser.shushan.mojian.base.exception.MjException;
 import io.github.llnancy.huaying.config.Constants;
+import io.github.llnancy.mojian.base.exception.MjBaseBizException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -30,11 +30,11 @@ public class RandomService {
 
     public String doRandom(String category, Function<Integer, Integer> function) {
         if (Constants.DOMAINS.equals(category) || ResourcesServer.isEmpty()) {
-            throw new MjException(Constants.RESOURCES_NOT_EXISTED);
+            throw new MjBaseBizException(Constants.RESOURCES_NOT_EXISTED);
         }
         List<String> resources = ResourcesServer.get(category);
         if (CollectionUtils.isEmpty(resources)) {
-            throw new MjException(Constants.RESOURCES_NOT_EXISTED);
+            throw new MjBaseBizException(Constants.RESOURCES_NOT_EXISTED);
         }
         int randomInt = function.apply(resources.size());
         return resources.get(randomInt);

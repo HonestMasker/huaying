@@ -2,8 +2,8 @@ package io.github.llnancy.huaying.web.advice;
 
 import io.github.llnancy.huaying.config.property.HyProperties;
 import io.github.llnancy.huaying.config.property.HyProperties.WebSiteInfo;
-import com.sunchaser.shushan.mojian.base.entity.response.SingleResponse;
-import com.sunchaser.shushan.mojian.web.advice.MjGlobalExceptionHandler;
+import io.github.llnancy.mojian.base.entity.response.SingleResponse;
+import io.github.llnancy.mojian.web.advice.MjDefaultGlobalExceptionHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @RequiredArgsConstructor
-public class HyExceptionHandler extends MjGlobalExceptionHandler {
+public class HyExceptionHandler extends MjDefaultGlobalExceptionHandler {
 
     private final HyProperties hyProperties;
 

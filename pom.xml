@@ -15,13 +15,10 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <springboot.version>2.7.6</springboot.version>
         <!-- 启动类 -->
         <start-class>io.github.llnancy.huaying.HuaYingApplication</start-class>
-        <!-- 工具包相关依赖-->
-        <google.guava.version>31.1-jre</google.guava.version>
-        <hutool.core.version>5.8.10</hutool.core.version>
-        <mojian.version>1.0.0-SNAPSHOT</mojian.version>
+        <springboot.version>2.7.6</springboot.version>
+        <mojian.version>0.0.1</mojian.version>
     </properties>
 
     <dependencyManagement>
@@ -65,26 +62,22 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>${google.guava.version}</version>
+            <version>31.1-jre</version>
         </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-core</artifactId>
-            <version>${hutool.core.version}</version>
+            <version>5.8.10</version>
         </dependency>
         <dependency>
-            <groupId>com.sunchaser.shushan</groupId>
-            <artifactId>sunchaser-mojian-base</artifactId>
+            <groupId>io.github.llnancy</groupId>
+            <artifactId>mojian-base</artifactId>
             <version>${mojian.version}</version>
-            <scope>system</scope>
-            <systemPath>${pom.basedir}/src/main/resources/lib/sunchaser-mojian-base-0.0.1-SNAPSHOT.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>com.sunchaser.shushan</groupId>
-            <artifactId>sunchaser-mojian-web</artifactId>
+            <groupId>io.github.llnancy</groupId>
+            <artifactId>mojian-web</artifactId>
             <version>${mojian.version}</version>
-            <scope>system</scope>
-            <systemPath>${pom.basedir}/src/main/resources/lib/sunchaser-mojian-web-0.0.1-SNAPSHOT.jar</systemPath>
         </dependency>
     </dependencies>
 

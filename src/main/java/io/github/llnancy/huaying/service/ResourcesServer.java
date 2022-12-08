@@ -6,7 +6,7 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import io.github.llnancy.huaying.config.Constants;
 import io.github.llnancy.huaying.config.property.HyProperties;
-import com.sunchaser.shushan.mojian.base.exception.MjException;
+import io.github.llnancy.mojian.base.exception.MjBaseBizException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
@@ -52,7 +52,7 @@ public class ResourcesServer implements InitializingBean {
                     .forEach(file -> RESOURCES_MAP.put(FileUtil.mainName(file), Lists.newArrayList(FileUtil.readUtf8Lines(file, Sets.newHashSet()))));
         } catch (IOException e) {
             LOGGER.error("LoadResourcesService#static loadResource error", e);
-            throw new MjException(Constants.NETWORK_ERROR);
+            throw new MjBaseBizException(Constants.NETWORK_ERROR);
         }
     }
 
