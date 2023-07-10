@@ -2,7 +2,6 @@ package io.github.llnancy.huaying.web.controller;
 
 import com.google.common.collect.Maps;
 import io.github.llnancy.huaying.service.RandomService;
-import io.github.llnancy.huaying.service.ResourcesServer;
 import io.github.llnancy.huaying.web.advice.HyExceptionHandler;
 import io.github.llnancy.mojian.base.entity.response.IResponse;
 import io.github.llnancy.mojian.base.entity.response.SingleResponse;
@@ -40,15 +39,13 @@ public class HyController {
 
     private final RandomService randomService;
 
-    private final ResourcesServer resourcesServer;
-
     /**
      * 手动刷新资源
      */
     @GetMapping("/flush")
     @ResponseBody
     public IResponse flush() {
-        resourcesServer.loadResource();
+        randomService.flush();
         return IResponse.ofSuccess();
     }
 

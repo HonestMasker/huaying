@@ -3,31 +3,35 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.sunchaser.shushan.huaying</groupId>
-    <artifactId>sunchaser-huaying</artifactId>
-    <version>1.0.0</version>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.13</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>io.github.llnancy</groupId>
+    <artifactId>huaying</artifactId>
+    <version>1.0.1</version>
 
     <description>一个基于 Spring Boot 构建的随机资源 API 服务</description>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <!-- 启动类 -->
-        <start-class>io.github.llnancy.huaying.HuaYingApplication</start-class>
-        <springboot.version>2.7.6</springboot.version>
-        <mojian.version>0.0.1</mojian.version>
+        <java.version>8</java.version>
+        <project.encoding>UTF-8</project.encoding>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>${project.encoding}</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${project.encoding}</project.reporting.outputEncoding>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${springboot.version}</version>
+                <groupId>io.github.llnancy</groupId>
+                <artifactId>mojian-bom</artifactId>
+                <version>0.0.2</version>
                 <type>pom</type>
+                <!-- 注意这里是import  -->
                 <scope>import</scope>
             </dependency>
         </dependencies>
@@ -56,28 +60,8 @@
             <artifactId>lombok</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>31.1-jre</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-core</artifactId>
-            <version>5.8.10</version>
-        </dependency>
-        <dependency>
-            <groupId>io.github.llnancy</groupId>
-            <artifactId>mojian-base</artifactId>
-            <version>${mojian.version}</version>
-        </dependency>
-        <dependency>
             <groupId>io.github.llnancy</groupId>
             <artifactId>mojian-web</artifactId>
-            <version>${mojian.version}</version>
         </dependency>
     </dependencies>
 
@@ -87,20 +71,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${springboot.version}</version>
-                <executions>
-                    <execution>
-                        <id>repackage</id>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <mainClass>${start-class}</mainClass>
-                    <layout>ZIP</layout>
-                    <includeSystemScope>true</includeSystemScope>
-                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -2,6 +2,7 @@ package io.github.llnancy.huaying.service;
 
 import io.github.llnancy.huaying.config.Constants;
 import io.github.llnancy.mojian.base.exception.MjBaseBizException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -18,6 +19,7 @@ import java.util.function.Function;
  * @since JDK8 2022/4/2
  */
 @Service
+@RequiredArgsConstructor
 public class RandomService {
 
     public String random(String category) {
@@ -38,5 +40,9 @@ public class RandomService {
         }
         int randomInt = function.apply(resources.size());
         return resources.get(randomInt);
+    }
+
+    public void flush() {
+        ResourcesServer.loadResource();
     }
 }

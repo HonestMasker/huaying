@@ -16,8 +16,6 @@ public interface Constants {
 
     String NO_AUTH = "未授权，不允许访问。请联系管理员进行授权~";
 
-    String NETWORK_ERROR = "网络异常，请稍后重试~";
-
     String RESOURCES_NOT_EXISTED = "资源不存在~";
 
     String JSON_VALUE = "json";

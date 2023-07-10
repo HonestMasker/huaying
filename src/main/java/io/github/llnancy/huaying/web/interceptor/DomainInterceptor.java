@@ -26,6 +26,7 @@ import static org.springframework.http.HttpHeaders.REFERER;
 @Component
 @Slf4j
 @RequiredArgsConstructor
+@SuppressWarnings("NullableProblems")
 public class DomainInterceptor implements HandlerInterceptor {
 
     private final HyProperties hyProperties;
