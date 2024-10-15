@@ -42,7 +42,7 @@ public class RandomService {
         }
         int size = resources.size();
         List<String> result;
-        if (count == 1) {
+        if (count == 0 || count == 1) {
             int randomInt = function.apply(size);
             result = Lists.newArrayList(resources.get(randomInt));
         } else if (count < size) {
