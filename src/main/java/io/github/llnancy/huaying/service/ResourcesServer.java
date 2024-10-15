@@ -1,13 +1,12 @@
 package io.github.llnancy.huaying.service;
 
 import cn.hutool.core.io.FileUtil;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import io.github.llnancy.huaying.config.Constants;
 import io.github.llnancy.huaying.config.property.HyProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -48,7 +47,14 @@ public class ResourcesServer implements InitializingBean {
         }
         loopFiles.stream()
                 .filter(file -> file.getName().endsWith(Constants.TXT))
-                .forEach(file -> RESOURCES_MAP.put(FileUtil.mainName(file), Lists.newArrayList(FileUtil.readUtf8Lines(file, Sets.newHashSet()))));
+                .forEach(file -> {
+                    List<String> lines = FileUtil.readUtf8Lines(file);
+                    List<String> collect = lines.stream()
+                            .filter(line -> StringUtils.isNotBlank(StringUtils.trim(line)))
+                            .distinct()
+                            .toList();
+                    RESOURCES_MAP.put(FileUtil.mainName(file), collect);
+                });
     }
 
     public static boolean isEmpty() {
