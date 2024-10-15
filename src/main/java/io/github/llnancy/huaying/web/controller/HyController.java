@@ -60,9 +60,9 @@ public class HyController {
     public void random(HttpServletRequest request,
                        HttpServletResponse response,
                        @PathVariable String category,
-                       @RequestParam(required = false, defaultValue = "1") Integer count,
+                       @RequestParam(required = false, defaultValue = "0") Integer count,
                        @RequestParam(value = "type", required = false, defaultValue = JSON_VALUE) ResponseType rt) throws Exception {
-        rt.doDispatcher(request, response, randomService.random(category, count));
+        rt.doDispatcher(request, response, count, randomService.random(category, count));
     }
 
     /**
@@ -79,9 +79,9 @@ public class HyController {
     public void today(HttpServletRequest request,
                       HttpServletResponse response,
                       @PathVariable String category,
-                      @RequestParam(required = false, defaultValue = "1") Integer count,
+                      @RequestParam(required = false, defaultValue = "0") Integer count,
                       @RequestParam(value = "type", required = false, defaultValue = JSON_VALUE) ResponseType rt) throws Exception {
-        rt.doDispatcher(request, response, randomService.today(category, count));
+        rt.doDispatcher(request, response, count, randomService.today(category, count));
     }
 
     /**
@@ -95,9 +95,9 @@ public class HyController {
          */
         URL {
             @Override
-            public void doDispatcher(HttpServletRequest request, HttpServletResponse response, List<String> randomSources) throws Exception {
+            public void doDispatcher(HttpServletRequest request, HttpServletResponse response, Integer count, List<String> randomSources) throws Exception {
                 response.setContentType(MediaType.TEXT_HTML_VALUE);
-                response.getWriter().print(randomSources.size() == 1 ? randomSources.get(0) : randomSources);
+                response.getWriter().print(count == 0 ? randomSources.get(0) : randomSources);
             }
         },
 
@@ -106,10 +106,10 @@ public class HyController {
          */
         JSON {
             @Override
-            public void doDispatcher(HttpServletRequest request, HttpServletResponse response, List<String> randomSources) throws Exception {
+            public void doDispatcher(HttpServletRequest request, HttpServletResponse response, Integer count, List<String> randomSources) throws Exception {
                 response.setContentType(MediaType.APPLICATION_JSON_VALUE);
                 response.setCharacterEncoding(StandardCharsets.UTF_8.name());
-                response.getWriter().print(JsonUtils.toJsonString(SingleResponse.success(randomSources.size() == 1 ? randomSources.get(0) : randomSources)));
+                response.getWriter().print(JsonUtils.toJsonString(SingleResponse.success(count == 0 ? randomSources.get(0) : randomSources)));
             }
         },
 
@@ -118,11 +118,11 @@ public class HyController {
          */
         REDIRECT {
             @Override
-            public void doDispatcher(HttpServletRequest request, HttpServletResponse response, List<String> randomSources) throws Exception {
+            public void doDispatcher(HttpServletRequest request, HttpServletResponse response, Integer count, List<String> randomSources) throws Exception {
                 response.sendRedirect(randomSources.get(0));
             }
         };
 
-        public abstract void doDispatcher(HttpServletRequest request, HttpServletResponse response, List<String> randomSources) throws Exception;
+        public abstract void doDispatcher(HttpServletRequest request, HttpServletResponse response, Integer count, List<String> randomSources) throws Exception;
     }
 }
