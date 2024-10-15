@@ -4,7 +4,7 @@ spring:
   application:
     name: huaying
   mvc:
-    throw-exception-if-no-handler-found: true # 404时抛出NoHandlerFoundException异常
+    throw-exception-if-no-handler-found: true # 404 时抛出 NoHandlerFoundException 异常
   web:
     resources:
       add-mappings: false # 关闭静态资源文件映射

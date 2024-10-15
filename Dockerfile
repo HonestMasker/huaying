@@ -1,7 +1,7 @@
-FROM openjdk:8-jre-alpine
+FROM amazoncorretto:17.0.12-alpine3.20
 ADD ./target/huaying-app.jar /app.jar
 CMD ["--server.port=8080"]
-ENV spring.profiles.active="pro"
+ENV spring.profiles.active="prod"
 RUN apk add --no-cache tzdata && \
     cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo "Asia/Shanghai" > /etc/timezone && \

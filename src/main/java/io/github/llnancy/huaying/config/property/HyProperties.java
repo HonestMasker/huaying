@@ -20,12 +20,12 @@ import org.springframework.context.annotation.Configuration;
 public class HyProperties {
 
     /**
-     * 是否允许header中无referer的请求进行访问
+     * 是否允许 header 中无 referer 的请求进行访问
      */
     private Boolean noReferer;
 
     /**
-     * API基础路径
+     * API 基础路径
      */
     private String apiBasePath = StringUtils.EMPTY;
 
