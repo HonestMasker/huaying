@@ -1,4 +1,4 @@
-FROM registry.cn-hangzhou.aliyuncs.com/llnancy/amazoncorretto:17.0.12-alpine3.20
+FROM amazoncorretto:17.0.12-alpine3.20
 ADD ./target/huaying-app.jar /app.jar
 CMD ["--server.port=8080"]
 ENV spring.profiles.active="prod"
