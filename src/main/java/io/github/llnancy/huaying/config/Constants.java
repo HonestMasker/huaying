@@ -19,8 +19,4 @@ public interface Constants {
     String RESOURCES_NOT_EXISTED = "资源不存在~";
 
     String JSON_VALUE = "json";
-
-    String REDIRECT_VALUE = "302";
-
-    String URL_VALUE = "url";
 }

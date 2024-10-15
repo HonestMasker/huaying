@@ -1,12 +1,11 @@
 package io.github.llnancy.huaying.web.controller;
 
-import com.google.common.collect.Maps;
 import io.github.llnancy.huaying.service.RandomService;
 import io.github.llnancy.huaying.web.advice.HyExceptionHandler;
 import io.github.llnancy.mojian.base.entity.response.IResponse;
 import io.github.llnancy.mojian.base.entity.response.SingleResponse;
 import io.github.llnancy.mojian.base.util.JsonUtils;
-import io.github.llnancy.mojian.base.util.Optionals;
+import io.github.llnancy.mojian.web.advice.DefaultGlobalExceptionHandler;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
@@ -20,14 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Map;
+import java.util.List;
 
 import static io.github.llnancy.huaying.config.Constants.JSON_VALUE;
-import static io.github.llnancy.huaying.config.Constants.REDIRECT_VALUE;
-import static io.github.llnancy.huaying.config.Constants.URL_VALUE;
 
 /**
- * 随机资源API控制层
+ * 随机资源 API 控制层
  *
  * @author sunchaser admin@lilu.org.cn
  * @since JDK8 2022/4/5
@@ -55,16 +52,17 @@ public class HyController {
      * @param request  request
      * @param response response
      * @param category 资源分类
-     * @param type     响应数据类型
+     * @param rt       响应数据类型
      * @throws Exception will be handled by {@link HyExceptionHandler}
-     * @see io.github.llnancy.mojian.web.advice.DefaultGlobalExceptionHandler
+     * @see DefaultGlobalExceptionHandler
      */
     @GetMapping("/random/{category}")
     public void random(HttpServletRequest request,
                        HttpServletResponse response,
                        @PathVariable String category,
-                       @RequestParam(required = false, defaultValue = JSON_VALUE) String type) throws Exception {
-        ResponseTypeEnum.match(type).doDispatcher(request, response, randomService.random(category));
+                       @RequestParam(required = false, defaultValue = "1") Integer count,
+                       @RequestParam(value = "type", required = false, defaultValue = JSON_VALUE) ResponseType rt) throws Exception {
+        rt.doDispatcher(request, response, randomService.random(category, count));
     }
 
     /**
@@ -73,71 +71,58 @@ public class HyController {
      * @param request  request
      * @param response response
      * @param category 资源分类
-     * @param type     响应数据类型
+     * @param rt       响应数据类型
      * @throws Exception will be handled by {@link HyExceptionHandler}
-     * @see io.github.llnancy.mojian.web.advice.DefaultGlobalExceptionHandler
+     * @see DefaultGlobalExceptionHandler
      */
     @GetMapping("/today/{category}")
     public void today(HttpServletRequest request,
                       HttpServletResponse response,
                       @PathVariable String category,
-                      @RequestParam(required = false, defaultValue = JSON_VALUE) String type) throws Exception {
-        ResponseTypeEnum.match(type).doDispatcher(request, response, randomService.today(category));
+                      @RequestParam(required = false, defaultValue = "1") Integer count,
+                      @RequestParam(value = "type", required = false, defaultValue = JSON_VALUE) ResponseType rt) throws Exception {
+        rt.doDispatcher(request, response, randomService.today(category, count));
     }
 
     /**
-     * response响应格式类型枚举
+     * response 响应格式类型枚举
      */
     @AllArgsConstructor
-    enum ResponseTypeEnum {
+    public enum ResponseType {
 
         /**
-         * 仅返回资源URL
+         * 仅返回资源 URL
          */
-        URL(URL_VALUE) {
+        URL {
             @Override
-            public void doDispatcher(HttpServletRequest request, HttpServletResponse response, String randomSource) throws Exception {
+            public void doDispatcher(HttpServletRequest request, HttpServletResponse response, List<String> randomSources) throws Exception {
                 response.setContentType(MediaType.TEXT_HTML_VALUE);
-                response.getWriter().print(randomSource);
+                response.getWriter().print(randomSources.size() == 1 ? randomSources.get(0) : randomSources);
             }
         },
 
         /**
-         * json格式
+         * json 格式
          */
-        JSON(JSON_VALUE) {
+        JSON {
             @Override
-            public void doDispatcher(HttpServletRequest request, HttpServletResponse response, String randomSource) throws Exception {
+            public void doDispatcher(HttpServletRequest request, HttpServletResponse response, List<String> randomSources) throws Exception {
                 response.setContentType(MediaType.APPLICATION_JSON_VALUE);
                 response.setCharacterEncoding(StandardCharsets.UTF_8.name());
-                response.getWriter().print(JsonUtils.toJsonString(SingleResponse.success(randomSource)));
+                response.getWriter().print(JsonUtils.toJsonString(SingleResponse.success(randomSources.size() == 1 ? randomSources.get(0) : randomSources)));
             }
         },
 
         /**
          * 重定向到资源源地址
          */
-        REDIRECT(REDIRECT_VALUE) {
+        REDIRECT {
             @Override
-            public void doDispatcher(HttpServletRequest request, HttpServletResponse response, String randomSource) throws Exception {
-                response.sendRedirect(randomSource);
+            public void doDispatcher(HttpServletRequest request, HttpServletResponse response, List<String> randomSources) throws Exception {
+                response.sendRedirect(randomSources.get(0));
             }
         };
 
-        private final String type;
-
-        private static final Map<String, ResponseTypeEnum> enumMap = Maps.newHashMap();
-
-        static {
-            for (ResponseTypeEnum typeEnum : ResponseTypeEnum.values()) {
-                enumMap.put(typeEnum.type, typeEnum);
-            }
-        }
-
-        public static ResponseTypeEnum match(String type) {
-            return Optionals.of(enumMap.get(type), JSON);
-        }
-
-        public abstract void doDispatcher(HttpServletRequest request, HttpServletResponse response, String randomSource) throws Exception;
+        public abstract void doDispatcher(HttpServletRequest request, HttpServletResponse response, List<String> randomSources) throws Exception;
     }
 }
