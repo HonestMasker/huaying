@@ -15,6 +15,7 @@ import org.springframework.util.ResourceUtils;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * 资源服务端
@@ -52,7 +53,7 @@ public class ResourcesServer implements InitializingBean {
                     List<String> collect = lines.stream()
                             .filter(line -> StringUtils.isNotBlank(StringUtils.trim(line)))
                             .distinct()
-                            .toList();
+                            .collect(Collectors.toList());
                     RESOURCES_MAP.put(FileUtil.mainName(file), collect);
                 });
     }
